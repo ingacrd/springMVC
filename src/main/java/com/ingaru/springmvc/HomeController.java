@@ -39,10 +39,18 @@ public class HomeController {
 		m.addAttribute("result", dao.getAliens());
 		return "showAliens";
 	}
-
-	@RequestMapping("addAlien")
-	public String addAlien(Alien a) {
 	
-		return "result";
+	@GetMapping("getAlien")
+	public String getAlien(@RequestParam("aid") int aid, Model m) {
+		m.addAttribute("result", dao.getAlien(aid));
+		return "showAliens";
 	}
+	
+	@RequestMapping("addAlien")
+	public String addAlien(@ModelAttribute("result") Alien a) {
+		dao.addAlien(a);
+		return "showAliens";
+	}
+	
+
 }
